@@ -430,8 +430,8 @@ setTimeout(type, 500);
     const hint = document.createElement('p');
     hint.textContent = '💡 Hover card and click "View Full" to zoom';
     hint.style.cssText = `
-        text-align:center; margin-top:10px;
-        color:rgba(160,160,184,0.55);
+        text-align:center; margin-top:50px;
+        color:rgb(244, 244, 249);
         font-size:0.76rem; font-family:'Poppins',sans-serif;
     `;
     stack.insertAdjacentElement('afterend', hint);
