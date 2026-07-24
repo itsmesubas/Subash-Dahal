@@ -25,7 +25,16 @@
     <link rel="canonical" href="https://www.subashdahal17.com.np">
     <title>Subash Dahal – Software Engineer & Web Developer | Pokhara, Nepal</title>
 
+    <script>
+        (function () {
+            const saved = localStorage.getItem('theme');
+            if (saved === 'light') document.documentElement.setAttribute('data-theme', 'light');
+        })();
+    </script>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="apple-touch-icon" href="favicon.svg">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/devicon/2.17.0/devicon.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 
@@ -78,16 +87,23 @@
                 <ul>
                     <li><a href="#home">Home</a></li>
                     <li><a href="#about">About</a></li>
+                    <li><a href="#experience">Journey</a></li>
                     <li><a href="#skills">Skills</a></li>
                     <li><a href="#projects">Projects</a></li>
                     <li><a href="#certificates">Certificates</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
             </nav>
-            <div class="hamburger" aria-label="Toggle menu" role="button" tabindex="0">
-                <div class="line"></div>
-                <div class="line"></div>
-                <div class="line"></div>
+            <div class="nav-controls">
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark mode" title="Toggle light/dark mode">
+                    <i class="fas fa-sun"></i>
+                    <i class="fas fa-moon"></i>
+                </button>
+                <div class="hamburger" aria-label="Toggle menu" role="button" tabindex="0">
+                    <div class="line"></div>
+                    <div class="line"></div>
+                    <div class="line"></div>
+                </div>
             </div>
         </div>
     </header>
@@ -163,6 +179,57 @@
         </div>
     </section>
 
+    <!-- ===== EXPERIENCE / EDUCATION TIMELINE ===== -->
+    <section id="experience" class="timeline-section">
+        <div class="container">
+            <h2 class="section-title">My <span class="highlight">Journey</span></h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">Ongoing</span>
+                        <h3>B.E. Software Engineering</h3>
+                        <!-- TODO: add your college/university name and year range -->
+                        <p>Pursuing a Bachelor's degree in Software Engineering, building a strong foundation in programming, databases, and system design.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">2024 – Present</span>
+                        <h3>Self-Directed Learning & Certifications</h3>
+                        <p>Completed courses and certificates in Cybersecurity, Python & data analysis, and Generative AI — building practical skills alongside coursework.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">2024 – Present</span>
+                        <h3>Independent & College Projects</h3>
+                        <p>Built and shipped real-world projects including an e-commerce platform, a tour & travel booking system, and a second-hand marketplace, using PHP, MySQL, and JavaScript.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">May 01, 2026 – Present</span>
+                        <h3>Mobile App & Data Analytics Intern</h3>
+                        <!-- TODO: add the company/organization name -->
+                        <p>Working on mobile app development and data analytics, applying my skills to real-world projects and production workflows.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">Now</span>
+                        <h3>Open to Freelance & Future Opportunities</h3>
+                        <p>Continuing to grow through my internship while staying open to freelance work and new opportunities, and exploring how AI can make applications smarter.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- ===== SKILLS ===== -->
     <section id="skills" class="skills">
         <div class="container">
@@ -172,22 +239,22 @@
                     <h4 class="category-label"><i class="fas fa-code"></i> Frontend</h4>
                     <div class="skills-grid">
                         <div class="skill-item" data-level="90">
-                            <div class="skill-icon"><i class="fab fa-html5"></i></div>
+                            <div class="skill-icon"><i class="devicon-html5-plain colored"></i></div>
                             <h3>HTML5</h3>
                             
                         </div>
                         <div class="skill-item" data-level="80">
-                            <div class="skill-icon"><i class="fab fa-css3-alt"></i></div>
+                            <div class="skill-icon"><i class="devicon-css3-plain colored"></i></div>
                             <h3>CSS3</h3>
                            
                         </div>
                         <div class="skill-item" data-level="70">
-                            <div class="skill-icon"><i class="fab fa-js"></i></div>
+                            <div class="skill-icon"><i class="devicon-javascript-plain colored"></i></div>
                             <h3>JavaScript</h3>
                            
                         </div>
                          <div class="skill-item" data-level="70">
-                            <div class="skill-icon"><i class="fab fa-react"></i></div>
+                            <div class="skill-icon"><i class="devicon-react-original colored"></i></div>
                             <h3>React</h3>
                            
                         </div>
@@ -197,24 +264,12 @@
                           
                         </div>
                         <div class="skill-item" data-level="60">
-                            <div class="skill-icon">
-                                <svg viewBox="0 0 24 24" width="30" height="30" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M14.5 0L2.5 12l4 4L22.5 0z" fill="#42A5F5"/>
-                                    <path d="M14.5 24L2.5 12l4-4 12 12z" fill="#0D47A1"/>
-                                    <path d="M10.5 20l4 4h8l-8-8z" fill="#42A5F5"/>
-                                </svg>
-                            </div>
+                            <div class="skill-icon"><i class="devicon-flutter-plain colored"></i></div>
                             <h3>Flutter</h3>
                            
                         </div>
                         <div class="skill-item" data-level="55">
-                            <div class="skill-icon">
-                                <svg viewBox="0 0 24 24" width="30" height="30" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M4.105 4.105C7.457.752 8.5 0 12 0s4.543.752 7.895 4.105C23.248 7.457 24 8.5 24 12s-.752 4.543-4.105 7.895C16.543 23.248 15.5 24 12 24s-4.543-.752-7.895-4.105C.752 16.543 0 15.5 0 12s.752-4.543 4.105-7.895z" fill="#0175C2"/>
-                                    <path d="M12.5 5.5h4l-7 7-2-2z" fill="#fff"/>
-                                    <path d="M9.5 12.5l3 3h4l-5-5z" fill="#02569B"/>
-                                </svg>
-                            </div>
+                            <div class="skill-icon"><i class="devicon-dart-plain colored"></i></div>
                             <h3>Dart</h3>
                            
                         </div>
@@ -224,22 +279,22 @@
                     <h4 class="category-label"><i class="fas fa-server"></i> Backend & Data</h4>
                     <div class="skills-grid">
                         <div class="skill-item" data-level="75">
-                            <div class="skill-icon"><i class="fab fa-php"></i></div>
+                            <div class="skill-icon"><i class="devicon-php-plain colored"></i></div>
                             <h3>PHP</h3>
                           
                         </div>
                         <div class="skill-item" data-level="70">
-                            <div class="skill-icon"><i class="fab fa-python"></i></div>
+                            <div class="skill-icon"><i class="devicon-python-plain colored"></i></div>
                             <h3>Python</h3>
                             
                         </div>
                         <div class="skill-item" data-level="72">
-                            <div class="skill-icon"><i class="fas fa-database"></i></div>
+                            <div class="skill-icon"><i class="devicon-mysql-plain colored"></i></div>
                             <h3>SQL</h3>
                            
                         </div>
                         <div class="skill-item" data-level="55">
-                            <div class="skill-icon"><i class="fas fa-server"></i></div>
+                            <div class="skill-icon"><i class="devicon-mongodb-plain colored"></i></div>
                             <h3>MongoDB</h3>
                            
                         </div>
@@ -249,33 +304,23 @@
                     <h4 class="category-label"><i class="fas fa-tools"></i> Tools</h4>
                     <div class="skills-grid skills-grid">
                         <div class="skill-item" data-level="75">
-                            <div class="skill-icon"><i class="fab fa-git-alt"></i></div>
+                            <div class="skill-icon"><i class="devicon-git-plain colored"></i></div>
                             <h3>Git</h3>
                            
                         </div>
                         <div class="skill-item" data-level="75">
-                            <div class="skill-icon"><i class="fas fa-file-excel"></i></div>
+                            <div class="skill-icon"><i class="fas fa-file-excel" style="color:#217346"></i></div>
                             <h3>MS Excel</h3>
                            
                         </div>
                         <div class="skill-item" data-level="75">
-                            <div class="skill-icon"><i class="fas fa-chart-bar"></i></div>
+                            <div class="skill-icon"><i class="fas fa-chart-bar" style="color:#F2C811"></i></div>
                             <h3>Power BI</h3>
                            
                         </div>
                            <div class="skill-item" data-level="55">
-                        <div class="skill-icon icon-docker">
-                            <svg viewBox="0 0 60 43" width="38" height="38" xmlns="http://www.w3.org/2000/svg">
-                                <rect x="1"  y="16" width="10" height="9" rx="1" fill="#2496ED"/>
-                                <rect x="13" y="16" width="10" height="9" rx="1" fill="#2496ED"/>
-                                <rect x="25" y="16" width="10" height="9" rx="1" fill="#2496ED"/>
-                                <rect x="37" y="16" width="10" height="9" rx="1" fill="#2496ED"/>
-                                <rect x="13" y="6"  width="10" height="9" rx="1" fill="#2496ED"/>
-                                <rect x="25" y="6"  width="10" height="9" rx="1" fill="#2496ED"/>
-                                <rect x="25" y="0"  width="10" height="5" rx="1" fill="#2496ED" opacity=".6"/>
-                                <path d="M55 22c-1-5-6-7-10-6-1-4-5-6-9-5H4c-2 7 1 14 7 17 5 3 11 3 17 3h14c7 0 14-3 13-9z" fill="#2496ED" opacity=".3"/>
-                                <circle cx="50" cy="18" r="3" fill="#2496ED" opacity=".7"/>
-                            </svg>
+                        <div class="skill-icon">
+                            <i class="devicon-docker-plain colored"></i>
                         </div>
                         <h3>Docker</h3>
                      
@@ -284,13 +329,20 @@
                 </div>
             </div>
         </div>
+        </div>
     </section>
 
     <!-- ===== PROJECTS ===== -->
     <section id="projects" class="projects">
         <div class="container">
             <h2 class="section-title">My <span class="highlight">Projects</span></h2>
-          
+
+            <div class="projects-filter">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="web">Web Apps</button>
+                <button class="filter-btn" data-filter="design">UI/UX Design</button>
+            </div>
+
             <div class="projects-grid">
 
                 <div class="project-item" data-category="web">
@@ -376,12 +428,12 @@
                             <p>AI-powered system that automatically detects phishing and fraudulent emails using machine learning. Analyzes email content, sender patterns, and metadata to classify threats in real time.</p>
                                <div class="project-tech">
             <span><i class="fab fa-python"></i> Python</span>
-            <span><i class="fas fa-microchip"></i> ML</span>
+            <span><i class="fas fa-brain"></i> ML</span>
+            <span><i class="fas fa-network-wired"></i> Deep Learning</span>
+            <span><i class="fas fa-chart-line"></i> Data Analytics</span>
             <span><i class="fas fa-flask"></i> Flask</span>
             <span><i class="fas fa-database"></i> MySQL</span>
             <span><i class="fab fa-html5"></i> HTML</span>
-            <span><i class="fa-solid fa-brain"></i>Deep Learning</span>
-            <span><i class="fa-solid fa-chart-line"></i> Data Analytics</span>
             <span><i class="fab fa-css3-alt"></i> CSS</span>
         </div>
                            
@@ -432,7 +484,7 @@
                             <span><i class="fab fa-js"></i> JS</span>
                             <span><i class="fab fa-php"></i> PHP</span>
                             <span><i class="fas fa-database"></i> MySQL</span>
-                            <span><i class="fa-solid fa-money-check-dollar"></i> Payment Integration</span>
+                            <span><i class="fas fa-credit-card"></i> Payment Integration</span>
                         </div>
                             <div class="project-links">
                                 <!-- <a href="#" class="project-link" title="View Live"><i class="fas fa-external-link-alt"></i> Live</a> -->
@@ -443,6 +495,7 @@
                 
 
             </div>
+        </div>
         </div>
     </section>
 
@@ -578,7 +631,6 @@
             </button>
         </div>
 
-    </div>
 </section>
     <!-- ===== CONTACT ===== -->
     <section id="contact" class="contact">
@@ -655,6 +707,7 @@
                     <ul>
                         <li><a href="#home">Home</a></li>
                         <li><a href="#about">About</a></li>
+                        <li><a href="#experience">Journey</a></li>
                         <li><a href="#skills">Skills</a></li>
                         <li><a href="#projects">Projects</a></li>
                         <li><a href="#certificates">Certificates</a></li>
@@ -669,10 +722,15 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <!-- <p>&copy; <span id="year"></span> Subash Dahal. All Rights Reserved.</p>  -->
+                <p>&copy; <span id="year"></span> Subash Dahal. All Rights Reserved.</p>
             </div>
         </div>
     </footer>
+
+    <!-- Back to top -->
+    <button id="backToTop" class="back-to-top" aria-label="Back to top" title="Back to top">
+        <i class="fas fa-chevron-up"></i>
+    </button>
 
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>

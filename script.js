@@ -1,7 +1,8 @@
 document.addEventListener('DOMContentLoaded', function () {
 
     // ===== YEAR =====
-    document.getElementById('year').textContent = new Date().getFullYear();
+    const yearEl = document.getElementById('year');
+    if (yearEl) yearEl.textContent = new Date().getFullYear();
 
     // ===== MOBILE MENU =====
     const hamburger = document.querySelector('.hamburger');
@@ -28,6 +29,32 @@ document.addEventListener('DOMContentLoaded', function () {
             navLinks.classList.remove('active');
         }
     });
+
+    // ===== THEME TOGGLE =====
+    const themeToggle = document.getElementById('themeToggle');
+    if (themeToggle) {
+        themeToggle.addEventListener('click', () => {
+            const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+            if (isLight) {
+                document.documentElement.removeAttribute('data-theme');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                document.documentElement.setAttribute('data-theme', 'light');
+                localStorage.setItem('theme', 'light');
+            }
+        });
+    }
+
+    // ===== BACK TO TOP =====
+    const backToTop = document.getElementById('backToTop');
+    if (backToTop) {
+        window.addEventListener('scroll', () => {
+            backToTop.classList.toggle('visible', window.scrollY > 400);
+        });
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    }
 
     // ===== HEADER SCROLL EFFECT =====
     const header = document.querySelector('header');
@@ -91,6 +118,7 @@ function type() {
 setTimeout(type, 500);
     // ===== GSAP ANIMATIONS =====
     if (typeof gsap !== 'undefined') {
+      try {
         gsap.registerPlugin(ScrollTrigger);
 
         // Hero
@@ -121,11 +149,14 @@ setTimeout(type, 500);
             x: 60, opacity: 0, duration: 0.9
         });
 
-        // Skill items stagger
-        gsap.from('.skill-item', {
-            scrollTrigger: { trigger: '.skills-grid', start: 'top 85%' },
-            y: 40, opacity: 0, duration: 0.6, stagger: 0.08
+        // Timeline items stagger
+        gsap.from('.timeline-item', {
+            scrollTrigger: { trigger: '.timeline', start: 'top 85%' },
+            x: -30, opacity: 0, duration: 0.6, stagger: 0.15
         });
+
+        // (Skill item reveal now handled by IntersectionObserver below, not GSAP —
+        // see ===== SKILL ITEMS REVEAL ===== section)
 
         // Project items stagger
         gsap.from('.project-item', {
@@ -142,6 +173,24 @@ setTimeout(type, 500);
             scrollTrigger: { trigger: '.contact-content', start: 'top 80%' },
             x: 50, opacity: 0, duration: 0.8
         });
+
+        // Recalculate trigger positions once everything (images, fonts) has
+        // fully loaded — otherwise late-loading images shift page layout and
+        // scroll-triggered sections can end up stuck at opacity:0 forever.
+        window.addEventListener('load', () => ScrollTrigger.refresh());
+        setTimeout(() => ScrollTrigger.refresh(), 1000);
+      } catch (err) {
+        console.error('GSAP animation setup failed:', err);
+        // Make sure content is never left invisible if GSAP/ScrollTrigger breaks
+        document.querySelectorAll(
+            '.hero-tag, .hero h1, .hero h2, .animated-paragraph, .hero-btns, .hero-socials, ' +
+            '.profile-img, .circle-animation, .section-title, .about-img, .about-text, ' +
+            '.timeline-item, .project-item, .contact-info, .contact-form'
+        ).forEach(el => {
+            el.style.opacity = '1';
+            el.style.transform = 'none';
+        });
+      }
     }
 
     // ===== SKILL BARS — animate when visible =====
@@ -157,6 +206,23 @@ setTimeout(type, 500);
     }, { threshold: 0.3 });
 
     skillFills.forEach(el => skillObserver.observe(el));
+
+    // ===== SKILL ITEMS REVEAL — animate when visible =====
+    const skillItems = document.querySelectorAll('.skill-item');
+
+    const skillItemObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('in-view');
+                skillItemObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.15 });
+
+    skillItems.forEach((el, i) => {
+        el.style.transitionDelay = `${(i % 8) * 0.06}s`;
+        skillItemObserver.observe(el);
+    });
 
     // ===== PROJECT FILTER =====
     const filterButtons = document.querySelectorAll('.filter-btn');
