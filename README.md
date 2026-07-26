@@ -9,6 +9,7 @@ This is my personal portfolio website where I showcase my projects, technical sk
 - Modern Responsive Design
 - About Me Section
 - Skills Showcase
+- My Journey
 - Project Gallery
 - Contact Form
 - GitHub & Social Links
