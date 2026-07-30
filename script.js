@@ -13,6 +13,13 @@ document.addEventListener('DOMContentLoaded', function () {
         navLinks.classList.toggle('active');
     });
 
+    hamburger.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            hamburger.click();
+        }
+    });
+
     document.querySelectorAll('.nav-links ul li a').forEach(link => {
         link.addEventListener('click', () => {
             hamburger.classList.remove('active');
@@ -264,6 +271,16 @@ setTimeout(type, 500);
     if (contactForm) {
         contactForm.addEventListener('submit', async function (e) {
             e.preventDefault();
+
+            // Honeypot check: real visitors never see or check this field.
+            // A bot that auto-fills every input will trip it — quietly drop the submission.
+            const honeypot = contactForm.querySelector('[name="botcheck"]');
+            if (honeypot && honeypot.checked) {
+                formStatus.textContent = '✅ Message sent! I\'ll get back to you soon.';
+                formStatus.className = 'form-status success';
+                contactForm.reset();
+                return;
+            }
 
             submitBtn.disabled = true;
             submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending…';

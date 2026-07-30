@@ -1,18 +1,18 @@
 /* ===== CSS VARIABLES ===== */
 :root {
     --primary:      #ffffff;
-    --accent:       #04e361;
+    --accent:       #00ff6a;
     --accent-dark:  #00cc55;
     --bg:           #1a1a2e;
     --bg-card:      #16213e;
-    --bg-light:     #063875;
+    --bg-light:     #0f3460;
     --text:         #e8e8e8;
     --text-muted:   #a0a0b8;
     --highlight:    #00ff6a;
-    --danger:       #db3422;
+    --danger:       #e74c3c;
     --gold:         #f39c12;
     --border:       rgba(255,255,255,0.08);
-    --shadow:       0 10px 40px rgba(0, 0, 0, 0.568);
+    --shadow:       0 10px 40px rgba(0,0,0,0.4);
     --radius:       12px;
     --radius-sm:    6px;
     --transition:   all 0.3s ease;
@@ -27,15 +27,15 @@
     --bg-card:      #ffffff;
     --bg-light:     #eef1f8;
     --text:         #2a2a3c;
-    --text-muted:   #a2a2be;
+    --text-muted:   #5b5b72;
     --highlight:    #00a34e;
     --border:       rgba(20,20,43,0.1);
-    --shadow:       0 10px 40px rgba(47, 47, 78, 0.509);
+    --shadow:       0 10px 40px rgba(20,20,43,0.1);
 }
 
 [data-theme="light"] header.scrolled {
     background: rgba(247, 248, 251, 0.97);
-    box-shadow: 0 2px 30px rgba(15, 15, 42, 0.516);
+    box-shadow: 0 2px 30px rgba(20,20,43,0.08);
 }
 
 /* ===== RESET & BASE ===== */
@@ -990,6 +990,18 @@ header .container {
 @media (max-width: 400px) {
     .cert-stack { width: 290px; height: 360px; }
 }
+/* Honeypot field: hidden from real users via off-screen positioning
+   (not display:none, since basic bots check for that and skip the field) */
+.honeypot-field {
+    position: absolute;
+    left: -9999px;
+    top: -9999px;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+    pointer-events: none;
+}
+
 /* ===== CONTACT ===== */
 .contact { background: var(--bg-card); }
 
@@ -1220,6 +1232,28 @@ footer {
 }
 
 .footer-credit i { font-size: 0.8rem; }
+
+.visitor-counter {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: rgba(160,160,184,0.6);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.visitor-counter:hover { color: var(--accent); }
+
+.visitor-counter-badge {
+    height: 18px;
+    border-radius: 4px;
+    filter: grayscale(1) brightness(1.4);
+    transition: var(--transition);
+}
+
+.visitor-counter:hover .visitor-counter-badge {
+    filter: none;
+}
 
 /* ===== BACK TO TOP ===== */
 .back-to-top {

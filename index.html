@@ -9,6 +9,21 @@
     <meta name="robots" content="index, follow">
     <meta name="google-site-verification" content="5fWLmieM5VdOPzUiQZdmqNqzzuQnUt0Or237oFephUc" />
 
+    <!-- Google Analytics (GA4) -->
+    <!-- TODO: Replace G-XXXXXXXXXX with your real Measurement ID from analytics.google.com -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-B3639DMP02"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-B3639DMP02');
+    </script>
+
+    <!-- GoatCounter (public analytics dashboard) -->
+    <!-- TODO: Replace YOUR-CODE with the site code you choose when signing up at goatcounter.com -->
+    <script data-goatcounter="https://subashdahal.goatcounter.com/count"
+            async src="//gc.zgo.at/count.js"></script>
+
     <!-- Open Graph -->
     <meta property="og:title" content="Subash Dahal - Software Engineer & Web Developer">
     <meta property="og:description" content="Portfolio of Subash Dahal – Web developer specializing in PHP, Python & MySQL.">
@@ -302,7 +317,7 @@
                 </div>
                 <div class="skill-category">
                     <h4 class="category-label"><i class="fas fa-tools"></i> Tools</h4>
-                    <div class="skills-grid skills-grid">
+                    <div class="skills-grid">
                         <div class="skill-item" data-level="75">
                             <div class="skill-icon"><i class="devicon-git-plain colored"></i></div>
                             <h3>Git</h3>
@@ -663,6 +678,9 @@
                         <input type="hidden" name="access_key" value="b6f7b9e1-5d88-4310-82fe-84c533a4df55">
                         <input type="hidden" name="subject" value="New Contact Form Submission – Portfolio">
 
+                        <!-- Honeypot: hidden from real visitors, bots that auto-fill every field get caught -->
+                        <input type="checkbox" name="botcheck" id="botcheck" class="honeypot-field" tabindex="-1" autocomplete="off">
+
                         <div class="form-group">
                             <label for="name">Your Name</label>
                             <input type="text" id="name" name="name" placeholder="Subash Dahal" required>
@@ -723,6 +741,12 @@
             </div>
             <div class="footer-bottom">
                 <p>&copy; <span id="year"></span> Subash Dahal. All Rights Reserved.</p>
+                <!-- TODO: Replace YOUR-CODE with your GoatCounter site code (same one used above) -->
+                <a href="https://subashdahal.goatcounter.com" target="_blank" rel="noopener" class="visitor-counter" title="View full site stats">
+                    <i class="fas fa-chart-simple"></i>
+                    <span>Site visits: </span>
+                    <img src="https://subashdahal.goatcounter.com/counter/TOTAL.svg" alt="Total site visitors" class="visitor-counter-badge">
+                </a>
             </div>
         </div>
     </footer>
