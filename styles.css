@@ -1244,16 +1244,14 @@ footer {
 
 .visitor-counter:hover { color: var(--accent); }
 
-.visitor-counter-badge {
-    height: 28px;
-    width: auto;
-    border-radius: 4px;
-    filter: grayscale(1) brightness(1.4);
-    transition: var(--transition);
+.visitor-counter #visitorCount {
+    color: var(--text);
+    font-weight: 700;
+    font-size: 1rem;
 }
 
-.visitor-counter:hover .visitor-counter-badge {
-    filter: none;
+.visitor-counter:hover #visitorCount {
+    color: var(--accent);
 }
 
 /* ===== BACK TO TOP ===== */
