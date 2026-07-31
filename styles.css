@@ -1245,7 +1245,8 @@ footer {
 .visitor-counter:hover { color: var(--accent); }
 
 .visitor-counter-badge {
-    height: 18px;
+    height: 28px;
+    width: auto;
     border-radius: 4px;
     filter: grayscale(1) brightness(1.4);
     transition: var(--transition);
