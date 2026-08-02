@@ -1,15 +1,67 @@
 document.addEventListener('DOMContentLoaded', function () {
-    // YEAR 
+
+    // ===== YEAR =====
     const yearEl = document.getElementById('year');
     if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-    //  VISITOR COUNT 
+    // ===== VISITOR COUNT =====
     const visitorCountEl = document.getElementById('visitorCount');
     if (visitorCountEl) {
         fetch('https://subashdahal.goatcounter.com/counter/TOTAL.json')
             .then(res => res.json())
             .then(data => { visitorCountEl.textContent = data.count; })
             .catch(() => { visitorCountEl.textContent = '—'; });
+    }
+
+    // ===== LANGUAGE SWITCHER =====
+    if (typeof translations !== 'undefined') {
+        const langToggle  = document.getElementById('langToggle');
+        const langMenu    = document.getElementById('langMenu');
+        const langCurrent = document.getElementById('langCurrent');
+
+        function applyLanguage(lang) {
+            const dict = translations[lang] || translations.en;
+
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (dict[key] !== undefined) el.innerHTML = dict[key];
+            });
+
+            document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+                const key = el.getAttribute('data-i18n-placeholder');
+                if (dict[key] !== undefined) el.setAttribute('placeholder', dict[key]);
+            });
+
+            document.documentElement.setAttribute('lang', lang);
+            if (langCurrent) langCurrent.textContent = lang.toUpperCase();
+            localStorage.setItem('lang', lang);
+        }
+
+        if (langToggle && langMenu) {
+            langToggle.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const isOpen = langMenu.classList.toggle('open');
+                langToggle.setAttribute('aria-expanded', isOpen);
+            });
+
+            langMenu.querySelectorAll('li[data-lang]').forEach(item => {
+                item.addEventListener('click', () => {
+                    applyLanguage(item.getAttribute('data-lang'));
+                    langMenu.classList.remove('open');
+                    langToggle.setAttribute('aria-expanded', 'false');
+                });
+            });
+
+            document.addEventListener('click', (e) => {
+                if (!langMenu.contains(e.target) && e.target !== langToggle) {
+                    langMenu.classList.remove('open');
+                    langToggle.setAttribute('aria-expanded', 'false');
+                }
+            });
+        }
+
+        const savedLang = localStorage.getItem('lang');
+        if (savedLang && translations[savedLang]) applyLanguage(savedLang);
     }
 
     // ===== MOBILE MENU =====
@@ -45,7 +97,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    //  THEME TOGGLE 
+    // ===== THEME TOGGLE =====
     const themeToggle = document.getElementById('themeToggle');
     if (themeToggle) {
         themeToggle.addEventListener('click', () => {
@@ -60,7 +112,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    //  BACK TO TOP 
+    // ===== BACK TO TOP =====
     const backToTop = document.getElementById('backToTop');
     if (backToTop) {
         window.addEventListener('scroll', () => {
@@ -71,13 +123,13 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    //  HEADER SCROLL EFFECT 
+    // ===== HEADER SCROLL EFFECT =====
     const header = document.querySelector('header');
     window.addEventListener('scroll', () => {
         header.classList.toggle('scrolled', window.scrollY > 50);
     });
 
-    //  ACTIVE NAV LINK ON SCROLL 
+    // ===== ACTIVE NAV LINK ON SCROLL =====
     const sections   = document.querySelectorAll('section[id]');
     const navAnchors = document.querySelectorAll('.nav-links ul li a');
 
@@ -131,7 +183,7 @@ function type() {
 
 // Small delay to ensure DOM is painted before starting
 setTimeout(type, 500);
-    //  GSAP ANIMATIONS 
+    // ===== GSAP ANIMATIONS =====
     if (typeof gsap !== 'undefined') {
       try {
         gsap.registerPlugin(ScrollTrigger);
@@ -208,7 +260,7 @@ setTimeout(type, 500);
       }
     }
 
-    //  SKILL BARS — animate when visible 
+    // ===== SKILL BARS — animate when visible =====
     const skillFills = document.querySelectorAll('.skill-fill');
 
     const skillObserver = new IntersectionObserver((entries) => {
@@ -321,7 +373,7 @@ setTimeout(type, 500);
     }
 
 });
-// CERTIFICATE STACK SLIDER 
+// ===== CERTIFICATE STACK SLIDER =====
 (function () {
     const stack   = document.getElementById('certStack');
     if (!stack) return;
@@ -336,7 +388,7 @@ setTimeout(type, 500);
     let timer     = null;
     let isHovered = false;
 
-    //  Stack positions 
+    // ── Stack positions ──────────────────────────────
     const POS = [
         { y: 0,  r: 0,   o: 1,    s: 1,    z: 10 },
         { y: 14, r: 2.5, o: 0.85, s: 0.96, z: 9  },
@@ -345,7 +397,7 @@ setTimeout(type, 500);
         { y: 40, r: 0,   o: 0,    s: 0.85, z: 6  },
     ];
 
-    // Render stack 
+    // ── Render stack ─────────────────────────────────
     function render() {
         cards.forEach((card, i) => {
             const pos = (i - current + total) % total;
@@ -359,7 +411,7 @@ setTimeout(type, 500);
         if (counter) counter.textContent = `${current + 1} / ${total}`;
     }
 
-    //  Navigation 
+    // ── Navigation ───────────────────────────────────
     function goTo(index) {
         current = (index + total) % total;
         render();
@@ -367,14 +419,14 @@ setTimeout(type, 500);
     function goNext() { goTo(current + 1); }
     function goPrev() { goTo(current - 1); }
 
-    //  Auto play 
+    // ── Auto play ────────────────────────────────────
     function startAuto() {
         stopAuto();
         timer = setInterval(() => { if (!isHovered) goNext(); }, 4000);
     }
     function stopAuto() { clearInterval(timer); timer = null; }
 
-    //  Button events 
+    // ── Button events ────────────────────────────────
     nextBtn?.addEventListener('click', (e) => { e.stopPropagation(); goNext(); startAuto(); });
     prevBtn?.addEventListener('click', (e) => { e.stopPropagation(); goPrev(); startAuto(); });
 
@@ -386,7 +438,7 @@ setTimeout(type, 500);
         });
     });
 
-    //  Swipe 
+    // ── Swipe ────────────────────────────────────────
     let touchStartX = 0;
     stack.addEventListener('touchstart', e => {
         touchStartX = e.touches[0].clientX;
@@ -400,14 +452,14 @@ setTimeout(type, 500);
         }
     }, { passive: true });
 
-    // Keyboard
+    // ── Keyboard ─────────────────────────────────────
     document.addEventListener('keydown', e => {
         if (modal.style.display === 'flex') return;
         if (e.key === 'ArrowRight') { goNext(); startAuto(); }
         if (e.key === 'ArrowLeft')  { goPrev(); startAuto(); }
     });
 
-    //  Hover overlay (top card only) 
+    // ── Hover overlay (top card only) ────────────────
     stack.addEventListener('mouseenter', () => {
         isHovered = true;
         const topCard = cards[current];
@@ -423,7 +475,7 @@ setTimeout(type, 500);
         });
     });
 
-    //  Single click = next slide 
+    // ── Single click = next slide ─────────────────────
     stack.addEventListener('click', (e) => {
         // ignore clicks on overlay buttons
         if (e.target.closest('.certificate-overlay')) return;
@@ -488,7 +540,7 @@ setTimeout(type, 500);
     modal.addEventListener('click',  (e) => { if (e.target === modal) closeModal(); });
     document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 
-    // Add "View" button inside each overlay
+    // ── Add "View" button inside each overlay ────────
     cards.forEach((card) => {
         const overlay = card.querySelector('.certificate-overlay');
         const img     = card.querySelector('img');
@@ -517,7 +569,7 @@ setTimeout(type, 500);
         overlay.appendChild(viewBtn);
     });
 
-    // Hint below stack 
+    // ── Hint below stack ──────────────────────────────
     const hint = document.createElement('p');
     hint.textContent = '💡 Hover card and click "View Full" to zoom';
     hint.style.cssText = `

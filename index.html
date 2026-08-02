@@ -9,15 +9,18 @@
     <meta name="robots" content="index, follow">
     <meta name="google-site-verification" content="5fWLmieM5VdOPzUiQZdmqNqzzuQnUt0Or237oFephUc" />
 
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-B3639DMP02"></script>
+    <!-- Google Analytics (GA4) -->
+    <!-- TODO: Replace G-XXXXXXXXXX with your real Measurement ID from analytics.google.com -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
-        gtag('config', 'G-B3639DMP02');
+        gtag('config', 'G-XXXXXXXXXX');
     </script>
 
-    
+    <!-- GoatCounter (public analytics dashboard) -->
+    <!-- TODO: Replace subashdahal with the site code you choose when signing up at goatcounter.com -->
     <script data-goatcounter="https://subashdahal.goatcounter.com/count"
             async src="//gc.zgo.at/count.js"></script>
 
@@ -97,16 +100,27 @@
             <div class="logo">Subash<span class="highlight">.</span></div>
             <nav class="nav-links" aria-label="Main Navigation">
                 <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#experience">Journey</a></li>
-                    <li><a href="#skills">Skills</a></li>
-                    <li><a href="#projects">Projects</a></li>
-                    <li><a href="#certificates">Certificates</a></li>
-                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#home" data-i18n="nav_home">Home</a></li>
+                    <li><a href="#about" data-i18n="nav_about">About</a></li>
+                    <li><a href="#experience" data-i18n="nav_journey">Journey</a></li>
+                    <li><a href="#skills" data-i18n="nav_skills">Skills</a></li>
+                    <li><a href="#projects" data-i18n="nav_projects">Projects</a></li>
+                    <li><a href="#certificates" data-i18n="nav_certificates">Certificates</a></li>
+                    <li><a href="#contact" data-i18n="nav_contact">Contact</a></li>
                 </ul>
             </nav>
             <div class="nav-controls">
+                <div class="lang-switch">
+                    <button class="lang-toggle" id="langToggle" aria-label="Change language" title="Change language" aria-haspopup="listbox" aria-expanded="false">
+                        <i class="fas fa-globe"></i>
+                        <span id="langCurrent">EN</span>
+                    </button>
+                    <ul class="lang-menu" id="langMenu" role="listbox">
+                        <li role="option" data-lang="en">🇬🇧 English</li>
+                        <li role="option" data-lang="np">🇳🇵 नेपाली</li>
+                        <li role="option" data-lang="de">🇩🇪 Deutsch</li>
+                    </ul>
+                </div>
                 <button class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark mode" title="Toggle light/dark mode">
                     <i class="fas fa-sun"></i>
                     <i class="fas fa-moon"></i>
@@ -120,18 +134,18 @@
         </div>
     </header>
 
-    <!--  HERO  -->
+    <!-- ===== HERO ===== -->
     <section id="home" class="hero">
         <div class="container">
             <div class="hero-content">
-                <p class="hero-tag animated-text">👋 Hello, I'm</p>
+                <p class="hero-tag animated-text" data-i18n="hero_tag">👋 Hello, I'm</p>
                 <h1 class="animated-text">Subash <span class="highlight">Dahal</span></h1>
                
-                <p class="animated-paragraph">Software engineering student from Pokhara, Nepal. Passionate about web development, data analytics, and exploring AI.</p>
+                <p class="animated-paragraph" data-i18n="hero_paragraph">Software engineering student from Pokhara, Nepal. Passionate about web development, data analytics, and exploring AI.</p>
                 <div class="hero-btns animated-btn">
-                    <a href="#contact" class="btn btn-primary"><i class="fas fa-paper-plane"></i> Hire Me</a>
-                    <a href="#projects" class="btn btn-secondary"><i class="fas fa-briefcase"></i> View Work</a>
-                    <a href="images/Subash_Dahal_CV.pdf" class="btn btn-outline" download="SubashDahal-Resume.pdf"><i class="fas fa-download"></i> Resume</a>
+                    <a href="#contact" class="btn btn-primary"><i class="fas fa-paper-plane"></i> <span data-i18n="hero_hire_me">Hire Me</span></a>
+                    <a href="#projects" class="btn btn-secondary"><i class="fas fa-briefcase"></i> <span data-i18n="hero_view_work">View Work</span></a>
+                    <a href="images/Subash_Dahal_CV.pdf" class="btn btn-outline" download="SubashDahal-Resume.pdf"><i class="fas fa-download"></i> <span data-i18n="hero_resume">Resume</span></a>
                 </div>
                 <div class="hero-socials animated-btn">
                     <a href="https://github.com/itsmesubas" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
@@ -151,104 +165,104 @@
         </div>
     </section>
 
-    <!--  ABOUT  -->
+    <!-- ===== ABOUT ===== -->
     <section id="about" class="about">
         <div class="container">
-            <h2 class="section-title">About <span class="highlight">Me</span></h2>
+            <h2 class="section-title" data-i18n="about_title">About <span class="highlight">Me</span></h2>
             <div class="about-content">
                 <div class="about-image">
                     <img src="images/download (1).jpg" alt="Subash Dahal coding" class="about-img" loading="lazy">
                 </div>
                 <div class="about-text">
-                    <h3>Who am I?</h3>
-                    <p>I'm a <strong>Software Engineering student</strong> from Pokhara, Nepal. I love building practical, real-world digital solutions using web technologies, data analytics, and backend tools like PHP and MySQL.</p>
-                    <p>Currently exploring how <strong>Artificial Intelligence</strong> can be applied to build smarter, more efficient applications — and actively seeking internship or freelance opportunities where I can contribute and grow.</p>
-                    <p>I believe in learning by doing. Every project is a chance to solve a real problem and improve my craft.</p>
+                    <h3 data-i18n="about_who">Who am I?</h3>
+                    <p data-i18n="about_p1">I'm a <strong>Software Engineering student</strong> from Pokhara, Nepal. I love building practical, real-world digital solutions using web technologies, data analytics, and backend tools like PHP and MySQL.</p>
+                    <p data-i18n="about_p2">Currently exploring how <strong>Artificial Intelligence</strong> can be applied to build smarter, more efficient applications — and actively seeking internship or freelance opportunities where I can contribute and grow.</p>
+                    <p data-i18n="about_p3">I believe in learning by doing. Every project is a chance to solve a real problem and improve my craft.</p>
                     <div class="about-details">
                         <div class="detail-item">
-                            <span><i class="fas fa-user"></i> Name:</span>
+                            <span><i class="fas fa-user"></i> <span data-i18n="about_label_name">Name:</span></span>
                             <p>Subash Dahal</p>
                         </div>
                         <div class="detail-item">
-                            <span><i class="fas fa-envelope"></i> Email:</span>
+                            <span><i class="fas fa-envelope"></i> <span data-i18n="about_label_email">Email:</span></span>
                             <p><a href="mailto:dahalsubash51@gmail.com">dahalsubash51@gmail.com</a></p>
                         </div>
                         <div class="detail-item">
-                            <span><i class="fas fa-map-marker-alt"></i> Location:</span>
+                            <span><i class="fas fa-map-marker-alt"></i> <span data-i18n="about_label_location">Location:</span></span>
                             <p>Pokhara, Nepal</p>
                         </div>
                         <div class="detail-item">
-                            <span><i class="fas fa-graduation-cap"></i> Degree:</span>
+                            <span><i class="fas fa-graduation-cap"></i> <span data-i18n="about_label_degree">Degree:</span></span>
                             <p>B.E. Software Engineering</p>
                         </div>
                     </div>
                     <div class="about-btns">
-                        <a href="images/Subash_Dahal_CV.pdf" class="btn btn-primary" download="SubashDahal-Resume.pdf"><i class="fas fa-download"></i> Download Resume</a>
-                        <a href="#contact" class="btn btn-secondary"><i class="fas fa-comments"></i> Let's Talk</a>
+                        <a href="images/Subash_Dahal_CV.pdf" class="btn btn-primary" download="SubashDahal-Resume.pdf"><i class="fas fa-download"></i> <span data-i18n="about_download_resume">Download Resume</span></a>
+                        <a href="#contact" class="btn btn-secondary"><i class="fas fa-comments"></i> <span data-i18n="about_lets_talk">Let's Talk</span></a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!--  EXPERIENCE / EDUCATION TIMELINE  -->
+    <!-- ===== EXPERIENCE / EDUCATION TIMELINE ===== -->
     <section id="experience" class="timeline-section">
         <div class="container">
-            <h2 class="section-title">My <span class="highlight">Journey</span></h2>
+            <h2 class="section-title" data-i18n="journey_title">My <span class="highlight">Journey</span></h2>
             <div class="timeline">
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
                     <div class="timeline-content">
                         <span class="timeline-date">Ongoing</span>
-                        <h3>B.E. Software Engineering</h3>
+                        <h3 data-i18n="journey1_title">B.E. Software Engineering</h3>
                         <!-- TODO: add your college/university name and year range -->
-                        <p>Pursuing a Bachelor's degree in Software Engineering, building a strong foundation in programming, databases, and system design.</p>
+                        <p data-i18n="journey1_text">Pursuing a Bachelor's degree in Software Engineering, building a strong foundation in programming, databases, and system design.</p>
                     </div>
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
                     <div class="timeline-content">
                         <span class="timeline-date">2024 – Present</span>
-                        <h3>Self-Directed Learning & Certifications</h3>
-                        <p>Completed courses and certificates in Cybersecurity, Python & data analysis, and Generative AI — building practical skills alongside coursework.</p>
+                        <h3 data-i18n="journey2_title">Self-Directed Learning & Certifications</h3>
+                        <p data-i18n="journey2_text">Completed courses and certificates in Cybersecurity, Python & data analysis, and Generative AI — building practical skills alongside coursework.</p>
                     </div>
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
                     <div class="timeline-content">
                         <span class="timeline-date">2024 – Present</span>
-                        <h3>Independent & College Projects</h3>
-                        <p>Built and shipped real-world projects including an e-commerce platform, a tour & travel booking system, and a second-hand marketplace, using PHP, MySQL, and JavaScript.</p>
+                        <h3 data-i18n="journey3_title">Independent & College Projects</h3>
+                        <p data-i18n="journey3_text">Built and shipped real-world projects including an e-commerce platform, a tour & travel booking system, and a second-hand marketplace, using PHP, MySQL, and JavaScript.</p>
                     </div>
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
                     <div class="timeline-content">
                         <span class="timeline-date">May 01, 2026 – Present</span>
-                        <h3>Mobile App & Data Analytics Intern</h3>
+                        <h3 data-i18n="journey4_title">Mobile App & Data Analytics Intern</h3>
                         <!-- TODO: add the company/organization name -->
-                        <p>Working on mobile app development and data analytics, applying my skills to real-world projects and production workflows.</p>
+                        <p data-i18n="journey4_text">Working on mobile app development and data analytics, applying my skills to real-world projects and production workflows.</p>
                     </div>
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
                     <div class="timeline-content">
                         <span class="timeline-date">Now</span>
-                        <h3>Open to Freelance & Future Opportunities</h3>
-                        <p>Continuing to grow through my internship while staying open to freelance work and new opportunities, and exploring how AI can make applications smarter.</p>
+                        <h3 data-i18n="journey5_title">Open to Freelance & Future Opportunities</h3>
+                        <p data-i18n="journey5_text">Continuing to grow through my internship while staying open to freelance work and new opportunities, and exploring how AI can make applications smarter.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- SKILLS  -->
+    <!-- ===== SKILLS ===== -->
     <section id="skills" class="skills">
         <div class="container">
-            <h2 class="section-title">My <span class="highlight">Skills</span></h2>
+            <h2 class="section-title" data-i18n="skills_title">My <span class="highlight">Skills</span></h2>
             <div class="skills-categories">
                 <div class="skill-category">
-                    <h4 class="category-label"><i class="fas fa-code"></i> Frontend</h4>
+                    <h4 class="category-label"><i class="fas fa-code"></i> <span data-i18n="skills_frontend">Frontend</span></h4>
                     <div class="skills-grid">
                         <div class="skill-item" data-level="90">
                             <div class="skill-icon"><i class="devicon-html5-plain colored"></i></div>
@@ -288,7 +302,7 @@
                     </div>
                 </div>
                 <div class="skill-category">
-                    <h4 class="category-label"><i class="fas fa-server"></i> Backend & Data</h4>
+                    <h4 class="category-label"><i class="fas fa-server"></i> <span data-i18n="skills_backend">Backend & Data</span></h4>
                     <div class="skills-grid">
                         <div class="skill-item" data-level="75">
                             <div class="skill-icon"><i class="devicon-php-plain colored"></i></div>
@@ -313,7 +327,7 @@
                     </div>
                 </div>
                 <div class="skill-category">
-                    <h4 class="category-label"><i class="fas fa-tools"></i> Tools</h4>
+                    <h4 class="category-label"><i class="fas fa-tools"></i> <span data-i18n="skills_tools">Tools</span></h4>
                     <div class="skills-grid">
                         <div class="skill-item" data-level="75">
                             <div class="skill-icon"><i class="devicon-git-plain colored"></i></div>
@@ -344,15 +358,15 @@
         </div>
     </section>
 
-    <!--  PROJECTS -->
+    <!-- ===== PROJECTS ===== -->
     <section id="projects" class="projects">
         <div class="container">
-            <h2 class="section-title">My <span class="highlight">Projects</span></h2>
+            <h2 class="section-title" data-i18n="projects_title">My <span class="highlight">Projects</span></h2>
 
             <div class="projects-filter">
-                <button class="filter-btn active" data-filter="all">All</button>
-                <button class="filter-btn" data-filter="web">Web Apps</button>
-                <button class="filter-btn" data-filter="design">UI/UX Design</button>
+                <button class="filter-btn active" data-filter="all" data-i18n="filter_all">All</button>
+                <button class="filter-btn" data-filter="web" data-i18n="filter_web">Web Apps</button>
+                <button class="filter-btn" data-filter="design" data-i18n="filter_design">UI/UX Design</button>
             </div>
 
             <div class="projects-grid">
@@ -361,12 +375,12 @@
                     <div class="project-img">
                         <img src="images/ecomm-website.png" alt="E-commerce website by Subash Dahal" loading="lazy">
                         <div class="project-overlay">
-                            <span class="project-tag">Web App</span>
+                            <span class="project-tag" data-i18n="tag_web_app">Web App</span>
                         </div>
                         </div>
                          <div class="project-info">
-                            <h3>E-commerce Website</h3>
-                            <p>Full shopping platform where users can browse, buy, and rate products.</p>
+                            <h3 data-i18n="proj1_title">E-commerce Website</h3>
+                            <p data-i18n="proj1_desc">Full shopping platform where users can browse, buy, and rate products.</p>
                              <div class="project-tech">
                             <span><i class="fab fa-html5"></i> HTML</span>
                             <span><i class="fab fa-css3-alt"></i> CSS</span>
@@ -375,8 +389,8 @@
                             <span><i class="fas fa-database"></i> MySQL</span>
                         </div>
                             <div class="project-links">
-                                <a href="https://itsmesubas.github.io/PraYuJa-Enterprises.com/" target="_blank" rel="noopener" class="project-link" title="View Live"><i class="fas fa-external-link-alt"></i> Live</a>
-                                <a href="https://github.com/itsmesubas" target="_blank" rel="noopener" class="project-link project-link--gh" title="Source Code"><i class="fab fa-github"></i> Code</a>
+                                <a href="https://itsmesubas.github.io/PraYuJa-Enterprises.com/" target="_blank" rel="noopener" class="project-link" title="View Live"><i class="fas fa-external-link-alt"></i> <span data-i18n="link_live">Live</span></a>
+                                <a href="https://github.com/itsmesubas" target="_blank" rel="noopener" class="project-link project-link--gh" title="Source Code"><i class="fab fa-github"></i> <span data-i18n="link_code">Code</span></a>
                             </div>
                         </div>
                 
@@ -386,12 +400,12 @@
                     <div class="project-img">
                         <img src="images/tour ss.png" alt="Tour and travel package management system by Subash Dahal" loading="lazy">
                         <div class="project-overlay">
-                            <span class="project-tag">Web App</span>
+                            <span class="project-tag" data-i18n="tag_web_app">Web App</span>
                             </div>
                             </div>
                             <div class="project-info">
-                            <h3>Tour & Travel System</h3>
-                            <p>Package management system to help travelers find and book travel deals.</p>
+                            <h3 data-i18n="proj2_title">Tour & Travel System</h3>
+                            <p data-i18n="proj2_desc">Package management system to help travelers find and book travel deals.</p>
                              <div class="project-tech">
                             <span><i class="fab fa-html5"></i> HTML</span>
                             <span><i class="fab fa-css3-alt"></i> CSS</span>
@@ -400,7 +414,7 @@
                             <span><i class="fas fa-database"></i> MySQL</span>
                         </div>
                             <div class="project-links">
-                                <a href="https://github.com/itsmesubas" target="_blank" rel="noopener" class="project-link project-link--gh" title="Source Code"><i class="fab fa-github"></i> Code</a>
+                                <a href="https://github.com/itsmesubas" target="_blank" rel="noopener" class="project-link project-link--gh" title="Source Code"><i class="fab fa-github"></i> <span data-i18n="link_code">Code</span></a>
                             </div>
                         </div>
                     
@@ -410,13 +424,13 @@
                     <div class="project-img">
                         <img src="images/Movie recommendation.png" alt="UI/UX design for movie recommendation system by Subash Dahal" loading="lazy">
                         <div class="project-overlay">
-                            <span class="project-tag">UI/UX Design</span>
+                            <span class="project-tag" data-i18n="tag_uiux">UI/UX Design</span>
                             </div>
                             </div>
 
                             <div class="project-info">
-                            <h3>Movie Recommendation UI</h3>
-                            <p>Clean, user-friendly interface design for a movie recommendation system.</p>
+                            <h3 data-i18n="proj3_title">Movie Recommendation UI</h3>
+                            <p data-i18n="proj3_desc">Clean, user-friendly interface design for a movie recommendation system.</p>
                             
                              <div class="project-tech">
                             <span><i class="fab fa-figma"></i> Figma</span>
@@ -431,13 +445,13 @@
                     <div class="project-img">
                         <img src="images/fraud-email-detection-ui.png" alt="Fraud Email Detection System" loading="lazy">
                         <div class="project-overlay">
-                            <span class="project-tag">🚧Ongoing College Major Project</span>
+                            <span class="project-tag" data-i18n="tag_ongoing_major">🚧Ongoing College Major Project</span>
                             </div>
                             </div>
 
                             <div class="project-info">
-                            <h3>Fraud Email Detection System</h3>
-                            <p>AI-powered system that automatically detects phishing and fraudulent emails using machine learning. Analyzes email content, sender patterns, and metadata to classify threats in real time.</p>
+                            <h3 data-i18n="proj4_title">Fraud Email Detection System</h3>
+                            <p data-i18n="proj4_desc">AI-powered system that automatically detects phishing and fraudulent emails using machine learning. Analyzes email content, sender patterns, and metadata to classify threats in real time.</p>
                                <div class="project-tech">
             <span><i class="fab fa-python"></i> Python</span>
             <span><i class="fas fa-brain"></i> ML</span>
@@ -458,13 +472,13 @@
                     <div class="project-img">
                         <img src="images/Screenshot 2025-05-03 191047.png" alt="Subash Dahal Portfolio Website" loading="lazy">
                         <div class="project-overlay">
-                            <span class="project-tag">Web App</span>
+                            <span class="project-tag" data-i18n="tag_web_app">Web App</span>
                             </div>
                             </div>
 
                             <div class="project-info">
-                            <h3>Portfolio Website</h3>
-                            <p>My personal portfolio — the site you're looking at right now!</p>
+                            <h3 data-i18n="proj5_title">Portfolio Website</h3>
+                            <p data-i18n="proj5_desc">My personal portfolio — the site you're looking at right now!</p>
                              <div class="project-tech">
                             <span><i class="fab fa-html5"></i> HTML</span>
                             <span><i class="fab fa-css3-alt"></i> CSS</span>
@@ -472,8 +486,8 @@
                             <span>GSAP</span>
                         </div>
                             <div class="project-links">
-                                <a href="https://www.subashdahal17.com.np" target="_blank" rel="noopener" class="project-link" title="View Live"><i class="fas fa-external-link-alt"></i> Live</a>
-                                <a href="https://github.com/itsmesubas" target="_blank" rel="noopener" class="project-link project-link--gh" title="Source Code"><i class="fab fa-github"></i> Code</a>
+                                <a href="https://www.subashdahal17.com.np" target="_blank" rel="noopener" class="project-link" title="View Live"><i class="fas fa-external-link-alt"></i> <span data-i18n="link_live">Live</span></a>
+                                <a href="https://github.com/itsmesubas" target="_blank" rel="noopener" class="project-link project-link--gh" title="Source Code"><i class="fab fa-github"></i> <span data-i18n="link_code">Code</span></a>
                             </div>
                         </div>
                     </div>
@@ -483,13 +497,13 @@
                     <div class="project-img">
                         <img src="images/thriftyfinds.png" alt="Thrifty Finds second-hand ecommerce by Subash Dahal" loading="lazy">
                         <div class="project-overlay">
-                            <span class="project-tag">College Minor Project </span>
+                            <span class="project-tag" data-i18n="tag_minor">College Minor Project </span>
                             </div>
                             </div>
 
                             <div class="project-info">
-                            <h3>Thrifty Finds</h3>
-                            <p>Second-hand electronics marketplace connecting buyers and sellers locally.</p>
+                            <h3 data-i18n="proj6_title">Thrifty Finds</h3>
+                            <p data-i18n="proj6_desc">Second-hand electronics marketplace connecting buyers and sellers locally.</p>
                              <div class="project-tech">
                             <span><i class="fab fa-html5"></i> HTML</span>
                             <span><i class="fab fa-css3-alt"></i> CSS</span>
@@ -500,7 +514,7 @@
                         </div>
                             <div class="project-links">
                                 <!-- <a href="#" class="project-link" title="View Live"><i class="fas fa-external-link-alt"></i> Live</a> -->
-                                <a href="https://github.com/itsmesubas/thriftyfinds/tree/main/frontend" target="_blank" rel="noopener" class="project-link project-link--gh" title="Source Code"><i class="fab fa-github"></i> Code</a>
+                                <a href="https://github.com/itsmesubas/thriftyfinds/tree/main/frontend" target="_blank" rel="noopener" class="project-link project-link--gh" title="Source Code"><i class="fab fa-github"></i> <span data-i18n="link_code">Code</span></a>
                             </div>
                         </div>
                     
@@ -511,10 +525,10 @@
         </div>
     </section>
 
-   <!--  CERTIFICATES  -->
+   <!-- ===== CERTIFICATES ===== -->
 <section id="certificates" class="certificates">
     <div class="container">
-        <h2 class="section-title">My <span class="highlight">Certificates</span></h2>
+        <h2 class="section-title" data-i18n="certificates_title">My <span class="highlight">Certificates</span></h2>
 
         <div class="cert-stack" id="certStack">
              <div class="cert-card">
@@ -644,14 +658,14 @@
         </div>
 
 </section>
-    <!--  CONTACT  -->
+    <!-- ===== CONTACT ===== -->
     <section id="contact" class="contact">
         <div class="container">
-            <h2 class="section-title">Get In <span class="highlight">Touch</span></h2>
+            <h2 class="section-title" data-i18n="contact_title">Get In <span class="highlight">Touch</span></h2>
             <div class="contact-content">
                 <div class="contact-info">
-                    <h3>Let's work together</h3>
-                    <p class="contact-intro">I'm open to internships, freelance projects, and collaborations. Feel free to reach out!</p>
+                    <h3 data-i18n="contact_heading">Let's work together</h3>
+                    <p class="contact-intro" data-i18n="contact_intro">I'm open to internships, freelance projects, and collaborations. Feel free to reach out!</p>
                     <div class="info-item">
                         <i class="fas fa-envelope"></i>
                         <p><a href="mailto:dahalsubash51@gmail.com">dahalsubash51@gmail.com</a></p>
@@ -679,23 +693,23 @@
                         <input type="checkbox" name="botcheck" id="botcheck" class="honeypot-field" tabindex="-1" autocomplete="off">
 
                         <div class="form-group">
-                            <label for="name">Your Name</label>
-                            <input type="text" id="name" name="name" placeholder="Subash Dahal" required>
+                            <label for="name" data-i18n="form_label_name">Your Name</label>
+                            <input type="text" id="name" name="name" placeholder="Subash Dahal" data-i18n-placeholder="form_placeholder_name" required>
                         </div>
                         <div class="form-group">
-                            <label for="email">Your Email</label>
-                            <input type="email" id="email" name="email" placeholder="subash@example.com" required>
+                            <label for="email" data-i18n="form_label_email">Your Email</label>
+                            <input type="email" id="email" name="email" placeholder="subash@example.com" data-i18n-placeholder="form_placeholder_email" required>
                         </div>
                         <div class="form-group">
-                            <label for="subject">Subject</label>
-                            <input type="text" id="subject" name="subject_line" placeholder="Project Collaboration">
+                            <label for="subject" data-i18n="form_label_subject">Subject</label>
+                            <input type="text" id="subject" name="subject_line" placeholder="Project Collaboration" data-i18n-placeholder="form_placeholder_subject">
                         </div>
                         <div class="form-group">
-                            <label for="message">Message</label>
-                            <textarea id="message" name="message" rows="5" placeholder="Hi Subash, I'd like to work with you on..." required></textarea>
+                            <label for="message" data-i18n="form_label_message">Message</label>
+                            <textarea id="message" name="message" rows="5" placeholder="Hi Subash, I'd like to work with you on..." data-i18n-placeholder="form_placeholder_message" required></textarea>
                         </div>
                         <button type="submit" class="btn btn-primary" id="submitBtn">
-                            <i class="fas fa-paper-plane"></i> Send Message
+                            <i class="fas fa-paper-plane"></i> <span data-i18n="form_send">Send Message</span>
                         </button>
                         <div id="form-status" class="form-status" aria-live="polite"></div>
                     </form>
@@ -704,13 +718,13 @@
         </div>
     </section>
 
-    <!-- FOOTER  -->
+    <!-- ===== FOOTER ===== -->
     <footer>
         <div class="container">
             <div class="footer-content">
                 <div class="footer-logo">
                     <h2>Subash Dahal<span class="highlight">.</span></h2>
-                    <p>Building digital experiences that matter.</p>
+                    <p data-i18n="footer_tagline">Building digital experiences that matter.</p>
                     <div class="footer-socials">
                         <a href="https://github.com/itsmesubas" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
                         <a href="https://np.linkedin.com/in/subash-dahal-8430712b2" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
@@ -718,29 +732,29 @@
                     </div>
                 </div>
                 <div class="footer-links">
-                    <h3>Quick Links</h3>
+                    <h3 data-i18n="footer_quick_links">Quick Links</h3>
                     <ul>
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#about">About</a></li>
-                        <li><a href="#experience">Journey</a></li>
-                        <li><a href="#skills">Skills</a></li>
-                        <li><a href="#projects">Projects</a></li>
-                        <li><a href="#certificates">Certificates</a></li>
-                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="#home" data-i18n="nav_home">Home</a></li>
+                        <li><a href="#about" data-i18n="nav_about">About</a></li>
+                        <li><a href="#experience" data-i18n="nav_journey">Journey</a></li>
+                        <li><a href="#skills" data-i18n="nav_skills">Skills</a></li>
+                        <li><a href="#projects" data-i18n="nav_projects">Projects</a></li>
+                        <li><a href="#certificates" data-i18n="nav_certificates">Certificates</a></li>
+                        <li><a href="#contact" data-i18n="nav_contact">Contact</a></li>
                     </ul>
                 </div>
                 <div class="footer-contact">
-                    <h3>Contact</h3>
+                    <h3 data-i18n="footer_contact">Contact</h3>
                     <p><i class="fas fa-envelope"></i> <a href="mailto:dahalsubash51@gmail.com">dahalsubash51@gmail.com</a></p>
                     <p><i class="fas fa-phone"></i> <a href="tel:+9779866311339">+977 9866311339</a></p>
                     <p><i class="fas fa-map-marker-alt"></i> Pokhara, Nepal</p>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; <span id="year"></span> Subash Dahal. All Rights Reserved.</p>
+                <p>&copy; <span id="year"></span> Subash Dahal. <span data-i18n="footer_rights">All Rights Reserved.</span></p>
                 <a href="https://subashdahal.goatcounter.com" target="_blank" rel="noopener" class="visitor-counter" title="View full site stats">
                     <i class="fas fa-chart-simple"></i>
-                    <span>Site visits: <strong id="visitorCount">—</strong></span>
+                    <span><span data-i18n="footer_site_visits">Site visits:</span> <strong id="visitorCount">—</strong></span>
                 </a>
             </div>
         </div>
@@ -754,6 +768,7 @@
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="translations.js"></script>
     <script src="script.js"></script>
 
 </body>
