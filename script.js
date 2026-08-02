@@ -13,6 +13,25 @@ document.addEventListener('DOMContentLoaded', function () {
             .catch(() => { visitorCountEl.textContent = '—'; });
     }
 
+    // ===== TYPED.JS HERO ROLE =====
+    let typedInstance = null;
+    function initTyped(lang) {
+        const el = document.getElementById('typedRole');
+        if (!el || typeof Typed === 'undefined' || typeof translations === 'undefined') return;
+        const dict = translations[lang] || translations.en;
+        const strings = dict.hero_roles || translations.en.hero_roles;
+        if (typedInstance) typedInstance.destroy();
+        typedInstance = new Typed('#typedRole', {
+            strings: strings,
+            typeSpeed: 50,
+            backSpeed: 25,
+            backDelay: 1500,
+            startDelay: 400,
+            loop: true,
+            smartBackspace: true
+        });
+    }
+
     // ===== LANGUAGE SWITCHER =====
     if (typeof translations !== 'undefined') {
         const langToggle  = document.getElementById('langToggle');
@@ -35,6 +54,7 @@ document.addEventListener('DOMContentLoaded', function () {
             document.documentElement.setAttribute('lang', lang);
             if (langCurrent) langCurrent.textContent = lang.toUpperCase();
             localStorage.setItem('lang', lang);
+            initTyped(lang);
         }
 
         if (langToggle && langMenu) {
@@ -62,6 +82,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         const savedLang = localStorage.getItem('lang');
         if (savedLang && translations[savedLang]) applyLanguage(savedLang);
+        else initTyped('en');
     }
 
     // ===== MOBILE MENU =====
@@ -295,6 +316,17 @@ setTimeout(type, 500);
     const filterButtons = document.querySelectorAll('.filter-btn');
     const projectItems  = document.querySelectorAll('.project-item');
 
+    // 3D tilt effect on hover
+    if (typeof VanillaTilt !== 'undefined') {
+        VanillaTilt.init(document.querySelectorAll('.project-item'), {
+            max: 8,
+            speed: 400,
+            glare: true,
+            'max-glare': 0.15,
+            scale: 1.02
+        });
+    }
+
     filterButtons.forEach(button => {
         button.addEventListener('click', () => {
             filterButtons.forEach(btn => btn.classList.remove('active'));
@@ -328,6 +360,31 @@ setTimeout(type, 500);
     const submitBtn   = document.getElementById('submitBtn');
     const formStatus  = document.getElementById('form-status');
 
+    function notify(message, type) {
+        // Screen readers: update the accessible (visually hidden) live region
+        if (formStatus) formStatus.textContent = message;
+
+        // Sighted users: show a toast
+        if (typeof Toastify !== 'undefined') {
+            Toastify({
+                text: message,
+                duration: 4500,
+                gravity: 'top',
+                position: 'right',
+                stopOnFocus: true,
+                style: {
+                    background: type === 'success'
+                        ? 'linear-gradient(135deg, #00c853, #00ff6a)'
+                        : 'linear-gradient(135deg, #e74c3c, #ff6b5b)',
+                    color: '#0a0a0a',
+                    fontWeight: '600',
+                    borderRadius: '10px',
+                    boxShadow: '0 10px 30px rgba(0,0,0,0.25)'
+                }
+            }).showToast();
+        }
+    }
+
     if (contactForm) {
         contactForm.addEventListener('submit', async function (e) {
             e.preventDefault();
@@ -336,16 +393,13 @@ setTimeout(type, 500);
             // A bot that auto-fills every input will trip it — quietly drop the submission.
             const honeypot = contactForm.querySelector('[name="botcheck"]');
             if (honeypot && honeypot.checked) {
-                formStatus.textContent = '✅ Message sent! I\'ll get back to you soon.';
-                formStatus.className = 'form-status success';
+                notify('✅ Message sent! I\'ll get back to you soon.', 'success');
                 contactForm.reset();
                 return;
             }
 
             submitBtn.disabled = true;
             submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending…';
-            formStatus.className = 'form-status';
-            formStatus.style.display = 'none';
 
             try {
                 const formData = new FormData(contactForm);
@@ -356,15 +410,13 @@ setTimeout(type, 500);
                 });
 
                 if (response.ok) {
-                    formStatus.textContent = '✅ Message sent! I\'ll get back to you soon.';
-                    formStatus.className = 'form-status success';
+                    notify('✅ Message sent! I\'ll get back to you soon.', 'success');
                     contactForm.reset();
                 } else {
                     throw new Error('Server error');
                 }
             } catch (err) {
-                formStatus.textContent = '❌ Something went wrong. Please try emailing me directly.';
-                formStatus.className = 'form-status error';
+                notify('❌ Something went wrong. Please try emailing me directly.', 'error');
             }
 
             submitBtn.disabled = false;
@@ -373,45 +425,42 @@ setTimeout(type, 500);
     }
 
 });
-// ===== CERTIFICATE STACK SLIDER =====
+// ===== CERTIFICATE SLIDER (vanilla JS — no external library) =====
 (function () {
-    const stack   = document.getElementById('certStack');
-    if (!stack) return;
+    const viewport = document.getElementById('certSwiper');
+    const track    = viewport?.querySelector('.swiper-wrapper');
+    if (!viewport || !track) return;
 
-    const cards   = Array.from(stack.querySelectorAll('.cert-card'));
-    const dots    = Array.from(document.querySelectorAll('.cert-dot'));
-    const counter = document.getElementById('certCounter');
-    const prevBtn = document.getElementById('certPrev');
-    const nextBtn = document.getElementById('certNext');
-    const total   = cards.length;
-    let current   = 0;
-    let timer     = null;
-    let isHovered = false;
+    const cards      = Array.from(track.querySelectorAll('.cert-card'));
+    const counter    = document.getElementById('certCounter');
+    const dotsHolder = document.getElementById('certPagination');
+    const total      = cards.length;
+    let current      = 0;
+    let timer        = null;
+    let isHovered     = false;
 
-    // ── Stack positions ──────────────────────────────
-    const POS = [
-        { y: 0,  r: 0,   o: 1,    s: 1,    z: 10 },
-        { y: 14, r: 2.5, o: 0.85, s: 0.96, z: 9  },
-        { y: 26, r: -2,  o: 0.70, s: 0.92, z: 8  },
-        { y: 36, r: 3,   o: 0.55, s: 0.88, z: 7  },
-        { y: 40, r: 0,   o: 0,    s: 0.85, z: 6  },
-    ];
-
-    // ── Render stack ─────────────────────────────────
-    function render() {
-        cards.forEach((card, i) => {
-            const pos = (i - current + total) % total;
-            const p   = POS[Math.min(pos, POS.length - 1)];
-            card.style.transform     = `translateY(${p.y}px) rotate(${p.r}deg) scale(${p.s})`;
-            card.style.opacity       = p.o;
-            card.style.zIndex        = p.z;
-            card.style.pointerEvents = pos === 0 ? 'auto' : 'none';
+    // ── Build dot indicators dynamically ──────────────
+    let dots = [];
+    if (dotsHolder && total > 0) {
+        dotsHolder.innerHTML = '';
+        dots = cards.map((_, i) => {
+            const dot = document.createElement('span');
+            dot.className = 'cert-dot';
+            dot.setAttribute('role', 'button');
+            dot.setAttribute('aria-label', `Go to certificate ${i + 1}`);
+            dot.addEventListener('click', () => { goTo(i); restartAuto(); });
+            dotsHolder.appendChild(dot);
+            return dot;
         });
+    }
+
+    // ── Render ─────────────────────────────────────────
+    function render() {
+        track.style.transform = `translateX(-${current * 100}%)`;
         dots.forEach((d, i) => d.classList.toggle('active', i === current));
         if (counter) counter.textContent = `${current + 1} / ${total}`;
     }
 
-    // ── Navigation ───────────────────────────────────
     function goTo(index) {
         current = (index + total) % total;
         render();
@@ -419,75 +468,69 @@ setTimeout(type, 500);
     function goNext() { goTo(current + 1); }
     function goPrev() { goTo(current - 1); }
 
-    // ── Auto play ────────────────────────────────────
+    // ── Autoplay ───────────────────────────────────────
     function startAuto() {
         stopAuto();
         timer = setInterval(() => { if (!isHovered) goNext(); }, 4000);
     }
     function stopAuto() { clearInterval(timer); timer = null; }
+    function restartAuto() { startAuto(); }
 
-    // ── Button events ────────────────────────────────
-    nextBtn?.addEventListener('click', (e) => { e.stopPropagation(); goNext(); startAuto(); });
-    prevBtn?.addEventListener('click', (e) => { e.stopPropagation(); goPrev(); startAuto(); });
+    viewport.addEventListener('mouseenter', () => { isHovered = true; });
+    viewport.addEventListener('mouseleave', () => { isHovered = false; });
 
-    dots.forEach(dot => {
-        dot.addEventListener('click', (e) => {
-            e.stopPropagation();
-            goTo(parseInt(dot.getAttribute('data-index')));
-            startAuto();
-        });
+    // ── Buttons ────────────────────────────────────────
+    document.getElementById('certPrev')?.addEventListener('click', () => { goPrev(); restartAuto(); });
+    document.getElementById('certNext')?.addEventListener('click', () => { goNext(); restartAuto(); });
+
+    // ── Keyboard ───────────────────────────────────────
+    document.addEventListener('keydown', (e) => {
+        if (modal.style.display === 'flex') return;
+        if (e.key === 'ArrowRight') { goNext(); restartAuto(); }
+        if (e.key === 'ArrowLeft')  { goPrev(); restartAuto(); }
     });
 
-    // ── Swipe ────────────────────────────────────────
-    let touchStartX = 0;
-    stack.addEventListener('touchstart', e => {
-        touchStartX = e.touches[0].clientX;
+    // ── Touch / drag swipe ─────────────────────────────
+    let startX = 0;
+    let isDragging = false;
+
+    viewport.addEventListener('touchstart', (e) => {
+        startX = e.touches[0].clientX;
+        isDragging = true;
     }, { passive: true });
 
-    stack.addEventListener('touchend', e => {
-        const diff = touchStartX - e.changedTouches[0].clientX;
+    viewport.addEventListener('touchend', (e) => {
+        if (!isDragging) return;
+        isDragging = false;
+        const diff = startX - e.changedTouches[0].clientX;
         if (Math.abs(diff) > 40) {
             diff > 0 ? goNext() : goPrev();
-            startAuto();
+            restartAuto();
         }
     }, { passive: true });
 
-    // ── Keyboard ─────────────────────────────────────
-    document.addEventListener('keydown', e => {
-        if (modal.style.display === 'flex') return;
-        if (e.key === 'ArrowRight') { goNext(); startAuto(); }
-        if (e.key === 'ArrowLeft')  { goPrev(); startAuto(); }
+    // Mouse drag (desktop)
+    viewport.addEventListener('mousedown', (e) => {
+        startX = e.clientX;
+        isDragging = true;
+        viewport.style.cursor = 'grabbing';
     });
-
-    // ── Hover overlay (top card only) ────────────────
-    stack.addEventListener('mouseenter', () => {
-        isHovered = true;
-        const topCard = cards[current];
-        const overlay = topCard.querySelector('.certificate-overlay');
-        if (overlay) overlay.style.opacity = '1';
-    });
-
-    stack.addEventListener('mouseleave', () => {
-        isHovered = false;
-        cards.forEach(card => {
-            const overlay = card.querySelector('.certificate-overlay');
-            if (overlay) overlay.style.opacity = '0';
-        });
-    });
-
-    // ── Single click = next slide ─────────────────────
-    stack.addEventListener('click', (e) => {
-        // ignore clicks on overlay buttons
-        if (e.target.closest('.certificate-overlay')) return;
-        goNext();
-        startAuto();
+    window.addEventListener('mouseup', (e) => {
+        if (!isDragging) return;
+        isDragging = false;
+        viewport.style.cursor = 'grab';
+        const diff = startX - e.clientX;
+        if (Math.abs(diff) > 40) {
+            diff > 0 ? goNext() : goPrev();
+            restartAuto();
+        }
     });
 
     // Init
     render();
     startAuto();
 
-    
+    // ── Fullscreen zoom modal ─────────────────────────
     const modal = document.createElement('div');
     modal.style.cssText = `
         display:none; position:fixed; inset:0;
@@ -528,12 +571,14 @@ setTimeout(type, 500);
         mImg.alt              = alt || 'Certificate';
         modal.style.display   = 'flex';
         document.body.style.overflow = 'hidden';
+        stopAuto();
     }
 
     function closeModal() {
         modal.style.display          = 'none';
         mImg.src                     = '';
         document.body.style.overflow = '';
+        startAuto();
     }
 
     mClose.addEventListener('click', (e) => { e.stopPropagation(); closeModal(); });
@@ -569,14 +614,14 @@ setTimeout(type, 500);
         overlay.appendChild(viewBtn);
     });
 
-    // ── Hint below stack ──────────────────────────────
+    // ── Hint below the slider ─────────────────────────
     const hint = document.createElement('p');
-    hint.textContent = '💡 Hover card and click "View Full" to zoom';
+    hint.textContent = '💡 Swipe, drag, or click "View Full" to zoom';
     hint.style.cssText = `
         text-align:center; margin-top:10px;
         color:rgba(160,160,184,0.55);
         font-size:0.76rem; font-family:'Poppins',sans-serif;
     `;
-    stack.insertAdjacentElement('afterend', hint);
+    document.querySelector('.slider-controls')?.insertAdjacentElement('afterend', hint);
 
 })();

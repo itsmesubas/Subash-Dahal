@@ -9,6 +9,7 @@ const translations = {
     nav_contact: "Contact",
 
     hero_tag: "👋 Hello, I'm",
+    hero_roles: ["Software Engineering Student", "Web Developer", "AI Enthusiast", "Data Analytics Learner"],
     hero_paragraph: "Software engineering student from Pokhara, Nepal. Passionate about web development, data analytics, and exploring AI.",
     hero_hire_me: "Hire Me",
     hero_view_work: "View Work",
@@ -99,6 +100,7 @@ const translations = {
     nav_contact: "सम्पर्क",
 
     hero_tag: "👋 नमस्ते, म हुँ",
+    hero_roles: ["सफ्टवेयर इन्जिनियरिङ विद्यार्थी", "वेब डेभलपर", "AI उत्साही", "डाटा एनालिटिक्स सिकारु"],
     hero_paragraph: "पोखरा, नेपालका सफ्टवेयर इन्जिनियरिङ विद्यार्थी। वेब डेभलपमेन्ट, डाटा एनालिटिक्स, र AI अन्वेषण गर्न रुचि राख्छु।",
     hero_hire_me: "मलाई काममा राख्नुहोस्",
     hero_view_work: "काम हेर्नुहोस्",
@@ -189,6 +191,7 @@ const translations = {
     nav_contact: "Kontakt",
 
     hero_tag: "👋 Hallo, ich bin",
+    hero_roles: ["Software-Engineering-Student", "Webentwickler", "KI-Enthusiast", "Lerne Datenanalyse"],
     hero_paragraph: "Software-Engineering-Student aus Pokhara, Nepal. Begeistert von Webentwicklung, Datenanalyse und der Erkundung von KI.",
     hero_hire_me: "Kontaktieren Sie mich",
     hero_view_work: "Projekte ansehen",

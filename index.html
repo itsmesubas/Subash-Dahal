@@ -51,6 +51,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/devicon/2.17.0/devicon.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastify-js/1.12.0/toastify.min.css">
     <link rel="stylesheet" href="styles.css">
 
     <script type="application/ld+json">
@@ -140,7 +141,7 @@
             <div class="hero-content">
                 <p class="hero-tag animated-text" data-i18n="hero_tag">👋 Hello, I'm</p>
                 <h1 class="animated-text">Subash <span class="highlight">Dahal</span></h1>
-               
+                <h2 class="hero-role animated-text"><span class="highlight" id="typedRole"></span></h2>
                 <p class="animated-paragraph" data-i18n="hero_paragraph">Software engineering student from Pokhara, Nepal. Passionate about web development, data analytics, and exploring AI.</p>
                 <div class="hero-btns animated-btn">
                     <a href="#contact" class="btn btn-primary"><i class="fas fa-paper-plane"></i> <span data-i18n="hero_hire_me">Hire Me</span></a>
@@ -530,8 +531,9 @@
     <div class="container">
         <h2 class="section-title" data-i18n="certificates_title">My <span class="highlight">Certificates</span></h2>
 
-        <div class="cert-stack" id="certStack">
-             <div class="cert-card">
+        <div class="swiper cert-swiper" id="certSwiper">
+            <div class="swiper-wrapper">
+             <div class="swiper-slide cert-card">
                 <img src="images/Introduction_to_cybersecurity.jpg" alt="Basic Cybersecurity certificate" loading="lazy">
                 <div class="certificate-overlay">
                     <h3>Intruduction to Cybersecurity</h3>
@@ -545,7 +547,7 @@
                     </ul>
                 </div>
             </div>
-            <div class="cert-card">
+            <div class="swiper-slide cert-card">
                 <img src="images/64.png" alt="From Student to Professional certificate" loading="lazy">
                 <div class="certificate-overlay">
                     <h3>From Student to Professional</h3>
@@ -562,7 +564,7 @@
                 </div>
             </div>
 
-            <div class="cert-card">
+            <div class="swiper-slide cert-card">
                 <img src="images/AI Basic course.png" alt="AI Basic Course certificate" loading="lazy">
                 <div class="certificate-overlay">
                     <h3>AI Basic Course</h3>
@@ -571,7 +573,7 @@
                 </div>
             </div>
 
-            <div class="cert-card">
+            <div class="swiper-slide cert-card">
                 <img src="images/Subash_Dahal_Certificate.jpg" alt="2 Days Generative AI Mastermind certificate" loading="lazy">
                 <div class="certificate-overlay">
                     <h3>Generative AI Mastermind</h3>
@@ -586,7 +588,7 @@
                 </div>
             </div>
 
-            <div class="cert-card">
+            <div class="swiper-slide cert-card">
                 <img src="images/computer basic course.png" alt="Computer Basic Course certificate" loading="lazy">
                 <div class="certificate-overlay">
                     <h3>Computer Basic Course</h3>
@@ -595,7 +597,7 @@
                 </div>
             </div>
 
-            <div class="cert-card">
+            <div class="swiper-slide cert-card">
                 <img src="images/Coursera_data_analysis.jpg" alt="Business Analysis & Process Management - Coursera" loading="lazy">
                 <div class="certificate-overlay">
                     <h3>Business Analysis &amp; Process Management</h3>
@@ -604,7 +606,7 @@
                 </div>
             </div>
 
-            <div class="cert-card">
+            <div class="swiper-slide cert-card">
                 <img src="images/Linux_certificate.jpg" alt="7 Day Linux Challenge certificate" loading="lazy">
                 <div class="certificate-overlay">
                     <h3>7 Day Linux Challenge</h3>
@@ -613,7 +615,7 @@
                 </div>
             </div>
             
-            <div class="cert-card">
+            <div class="swiper-slide cert-card">
                 <img src="images/IBM DA0101EN Certificate.jpg" alt="AI Basic Course certificate" loading="lazy">
                 <div class="certificate-overlay">
                     <h3>Data Analysis with Python </h3>
@@ -626,37 +628,24 @@
                          <li><i class="fas fa-check"></i> Model Evaluation</li>
                     </ul>
                 </div>
-                    
-                </div>
             </div>
-
+            </div>
         </div>
 
-        <!-- Counter label -->
-        <p class="cert-counter" id="certCounter">1 / 8</p>
-
-        <!-- Dot indicators -->
-        <div class="cert-dots" id="certDots">
-            <span class="cert-dot active" data-index="0"></span>
-            <span class="cert-dot" data-index="1"></span>
-            <span class="cert-dot" data-index="2"></span>
-            <span class="cert-dot" data-index="3"></span>
-            <span class="cert-dot" data-index="4"></span>
-            <span class="cert-dot" data-index="5"></span>
-            <span class="cert-dot" data-index="6"></span>
-            <span class="cert-dot" data-index="7"></span>
-
-        </div>
+        <!-- Pagination bullets -->
+        <div class="swiper-pagination" id="certPagination"></div>
 
         <div class="slider-controls">
             <button class="slider-prev" id="certPrev" aria-label="Previous certificate">
                 <i class="fas fa-chevron-left"></i>
             </button>
+            <p class="cert-counter" id="certCounter">1 / 8</p>
             <button class="slider-next" id="certNext" aria-label="Next certificate">
                 <i class="fas fa-chevron-right"></i>
             </button>
         </div>
 
+</div>
 </section>
     <!-- ===== CONTACT ===== -->
     <section id="contact" class="contact">
@@ -768,6 +757,9 @@
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.1.0/typed.umd.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastify-js/1.12.0/toastify.min.js"></script>
     <script src="translations.js"></script>
     <script src="script.js"></script>
 
