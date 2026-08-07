@@ -19,7 +19,11 @@ This is my personal portfolio website where I showcase my projects, technical sk
 
 - HTML
 - CSS
+- Flutter
 - JavaScript
+- Python
+- MySQL
+- PHP
 
 
 
