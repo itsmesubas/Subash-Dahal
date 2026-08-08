@@ -7,7 +7,7 @@
     --bg-card:      #16213e;
     --bg-light:     #0f3460;
     --text:         #e8e8e8;
-    --text-muted:   #a0a0b8;
+    --text-muted:   #b8b8d9;
     --highlight:    #00ff6a;
     --danger:       #e74c3c;
     --gold:         #f39c12;
@@ -20,14 +20,14 @@
 
 /* LIGHT THEME  */
 [data-theme="light"] {
-    --primary:      #14142b;
+    --primary:      #000000;
     --accent:       #00a34e;
     --accent-dark:  #00c85e;
     --bg:           #f7f8fb;
     --bg-card:      #ffffff;
     --bg-light:     #eef1f8;
-    --text:         #2a2a3c;
-    --text-muted:   #bffee2;
+    --text:         #9908ec;
+    --text-muted:   #050605;
     --highlight:    #00a34e;
     --border:       rgba(20,20,43,0.1);
     --shadow:       0 10px 40px rgba(20,20,43,0.1);
@@ -1236,7 +1236,7 @@ header .container {
 
 /* ===== FOOTER ===== */
 footer {
-    background: #0d0d1a;
+    background: #f5f5fb;
     color: var(--text-muted);
     padding: 60px 0 0;
     border-top: 1px solid var(--border);
@@ -1316,7 +1316,7 @@ footer {
     flex-wrap: wrap;
     gap: 10px;
     font-size: 0.85rem;
-    color: rgba(160,160,184,0.6);
+    color: rgb(0, 0, 0);
 }
 
 .footer-credit i { font-size: 0.8rem; }
@@ -1325,7 +1325,7 @@ footer {
     display: flex;
     align-items: center;
     gap: 8px;
-    color: rgba(160,160,184,0.6);
+    color: rgba(0, 0, 0, 0.6);
     text-decoration: none;
     transition: var(--transition);
 }
