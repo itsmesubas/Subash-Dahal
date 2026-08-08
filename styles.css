@@ -18,7 +18,7 @@
     --transition:   all 0.3s ease;
 }
 
-/* ===== LIGHT THEME ===== */
+/* LIGHT THEME  */
 [data-theme="light"] {
     --primary:      #14142b;
     --accent:       #00a34e;
@@ -27,7 +27,7 @@
     --bg-card:      #ffffff;
     --bg-light:     #eef1f8;
     --text:         #2a2a3c;
-    --text-muted:   #5b5b72;
+    --text-muted:   #bffee2;
     --highlight:    #00a34e;
     --border:       rgba(20,20,43,0.1);
     --shadow:       0 10px 40px rgba(20,20,43,0.1);
@@ -38,7 +38,6 @@
     box-shadow: 0 2px 30px rgba(20,20,43,0.08);
 }
 
-/* ===== RESET & BASE ===== */
 *, *::before, *::after {
     margin: 0;
     padding: 0;
@@ -96,7 +95,7 @@ section { padding: 90px 0; }
     animation: none; /* removed distracting neon glow */
 }
 
-/* ===== BUTTONS ===== */
+/*  BUTTONS  */
 .btn {
     display: inline-flex;
     align-items: center;
