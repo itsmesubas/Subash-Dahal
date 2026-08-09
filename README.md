@@ -38,6 +38,3 @@ Portfolio: Add your deployed portfolio link
 👨‍💻 Author
 
 Subash Dahal
-
-```bash
-git clone https://github.com/yourusername/portfolio-website.git

@@ -1,10 +1,10 @@
 document.addEventListener('DOMContentLoaded', function () {
 
-    // ===== YEAR =====
+    //  YEAR 
     const yearEl = document.getElementById('year');
     if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-    // ===== VISITOR COUNT =====
+    //  VISITOR COUNT 
     const visitorCountEl = document.getElementById('visitorCount');
     if (visitorCountEl) {
         fetch('https://subashdahal.goatcounter.com/counter/TOTAL.json')
@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function () {
             .catch(() => { visitorCountEl.textContent = '—'; });
     }
 
-    // ===== TYPED.JS HERO ROLE =====
+    //  TYPED.JS HERO ROLE
     let typedInstance = null;
     function initTyped(lang) {
         const el = document.getElementById('typedRole');
@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // ===== LANGUAGE SWITCHER =====
+    //  LANGUAGE SWITCHER 
     if (typeof translations !== 'undefined') {
         const langToggle  = document.getElementById('langToggle');
         const langMenu    = document.getElementById('langMenu');
@@ -118,7 +118,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    // ===== THEME TOGGLE =====
+    //  THEME TOGGLE 
     const themeToggle = document.getElementById('themeToggle');
     if (themeToggle) {
         themeToggle.addEventListener('click', () => {
@@ -133,7 +133,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // ===== BACK TO TOP =====
+    //  BACK TO TOP 
     const backToTop = document.getElementById('backToTop');
     if (backToTop) {
         window.addEventListener('scroll', () => {
@@ -144,13 +144,13 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // ===== HEADER SCROLL EFFECT =====
+    //  HEADER SCROLL EFFECT 
     const header = document.querySelector('header');
     window.addEventListener('scroll', () => {
         header.classList.toggle('scrolled', window.scrollY > 50);
     });
 
-    // ===== ACTIVE NAV LINK ON SCROLL =====
+    // ACTIVE NAV LINK ON SCROLL 
     const sections   = document.querySelectorAll('section[id]');
     const navAnchors = document.querySelectorAll('.nav-links ul li a');
 
@@ -171,7 +171,7 @@ document.addEventListener('DOMContentLoaded', function () {
     window.addEventListener('scroll', setActiveNav);
     setActiveNav();
 
-    // ===== TYPED TEXT EFFECT =====
+    //  TYPED TEXT EFFECT 
 const words  = ['PHP & MySQL.', 'Python.', 'JavaScript.', 'HTML & CSS.', 'UI/UX Design.'];
 const target = document.querySelector('.typed-text');
 let wi = 0, ci = 0, deleting = false;
@@ -204,7 +204,7 @@ function type() {
 
 // Small delay to ensure DOM is painted before starting
 setTimeout(type, 500);
-    // ===== GSAP ANIMATIONS =====
+    //  GSAP ANIMATIONS 
     if (typeof gsap !== 'undefined') {
       try {
         gsap.registerPlugin(ScrollTrigger);
@@ -243,8 +243,6 @@ setTimeout(type, 500);
             x: -30, opacity: 0, duration: 0.6, stagger: 0.15
         });
 
-        // (Skill item reveal now handled by IntersectionObserver below, not GSAP —
-        // see ===== SKILL ITEMS REVEAL ===== section)
 
         // Project items stagger
         gsap.from('.project-item', {
@@ -262,9 +260,7 @@ setTimeout(type, 500);
             x: 50, opacity: 0, duration: 0.8
         });
 
-        // Recalculate trigger positions once everything (images, fonts) has
-        // fully loaded — otherwise late-loading images shift page layout and
-        // scroll-triggered sections can end up stuck at opacity:0 forever.
+        
         window.addEventListener('load', () => ScrollTrigger.refresh());
         setTimeout(() => ScrollTrigger.refresh(), 1000);
       } catch (err) {
@@ -355,7 +351,7 @@ setTimeout(type, 500);
     }); 
 
 
-    // ===== CONTACT FORM =====
+    // CONTACT FORM 
     const contactForm = document.getElementById('contactForm');
     const submitBtn   = document.getElementById('submitBtn');
     const formStatus  = document.getElementById('form-status');
@@ -389,8 +385,7 @@ setTimeout(type, 500);
         contactForm.addEventListener('submit', async function (e) {
             e.preventDefault();
 
-            // Honeypot check: real visitors never see or check this field.
-            // A bot that auto-fills every input will trip it — quietly drop the submission.
+           
             const honeypot = contactForm.querySelector('[name="botcheck"]');
             if (honeypot && honeypot.checked) {
                 notify('✅ Message sent! I\'ll get back to you soon.', 'success');
@@ -425,7 +420,7 @@ setTimeout(type, 500);
     }
 
 });
-// ===== CERTIFICATE SLIDER (vanilla JS — no external library) =====
+//  CERTIFICATE SLIDER (vanilla JS  no external library) 
 (function () {
     const viewport = document.getElementById('certSwiper');
     const track    = viewport?.querySelector('.swiper-wrapper');
@@ -439,7 +434,7 @@ setTimeout(type, 500);
     let timer        = null;
     let isHovered     = false;
 
-    // ── Build dot indicators dynamically ──────────────
+    //  Build dot indicators dynamically 
     let dots = [];
     if (dotsHolder && total > 0) {
         dotsHolder.innerHTML = '';
@@ -454,7 +449,7 @@ setTimeout(type, 500);
         });
     }
 
-    // ── Render ─────────────────────────────────────────
+    //  Render 
     function render() {
         track.style.transform = `translateX(-${current * 100}%)`;
         dots.forEach((d, i) => d.classList.toggle('active', i === current));
@@ -468,7 +463,7 @@ setTimeout(type, 500);
     function goNext() { goTo(current + 1); }
     function goPrev() { goTo(current - 1); }
 
-    // ── Autoplay ───────────────────────────────────────
+    // Autoplay 
     function startAuto() {
         stopAuto();
         timer = setInterval(() => { if (!isHovered) goNext(); }, 4000);
@@ -479,18 +474,18 @@ setTimeout(type, 500);
     viewport.addEventListener('mouseenter', () => { isHovered = true; });
     viewport.addEventListener('mouseleave', () => { isHovered = false; });
 
-    // ── Buttons ────────────────────────────────────────
+    // Buttons 
     document.getElementById('certPrev')?.addEventListener('click', () => { goPrev(); restartAuto(); });
     document.getElementById('certNext')?.addEventListener('click', () => { goNext(); restartAuto(); });
 
-    // ── Keyboard ───────────────────────────────────────
+    //  Keyboard 
     document.addEventListener('keydown', (e) => {
         if (modal.style.display === 'flex') return;
         if (e.key === 'ArrowRight') { goNext(); restartAuto(); }
         if (e.key === 'ArrowLeft')  { goPrev(); restartAuto(); }
     });
 
-    // ── Touch / drag swipe ─────────────────────────────
+    //  Touch / drag swipe 
     let startX = 0;
     let isDragging = false;
 
@@ -530,7 +525,7 @@ setTimeout(type, 500);
     render();
     startAuto();
 
-    // ── Fullscreen zoom modal ─────────────────────────
+    // Fullscreen zoom modal 
     const modal = document.createElement('div');
     modal.style.cssText = `
         display:none; position:fixed; inset:0;
@@ -614,7 +609,7 @@ setTimeout(type, 500);
         overlay.appendChild(viewBtn);
     });
 
-    // ── Hint below the slider ─────────────────────────
+    //  Hint below the slider
     const hint = document.createElement('p');
     hint.textContent = '💡 Swipe, drag, or click "View Full" to zoom';
     hint.style.cssText = `
