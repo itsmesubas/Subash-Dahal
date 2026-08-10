@@ -21,16 +21,11 @@ This is my personal portfolio website where I showcase my projects, technical sk
 - CSS
 - Flutter
 - JavaScript
-- Python
+- Python 
 - MySQL
 - PHP
 
 
-
-🎯 Goals
-Showcase projects professionally
-Build personal brand
-Create strong internship portfolio
 📫 Connect With Me
 GitHub: https://github.com/itsmesubas
 LinkedIn: Add your LinkedIn
